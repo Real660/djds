@@ -23,7 +23,7 @@ jobs:
 
     - name: Compilar con PyInstaller
       run: |
-        pyinstaller --onefile --uac-admin --embedded-manifest=y --icon=NONE "XClient Crack Loader.py"
+        pyinstaller --onefile --uac-admin --embed-manifest --icon=NONE "XClient Crack Loader.py"
 
     - name: Guardar el archivo EXE resultante
       uses: actions/upload-artifact@v4
