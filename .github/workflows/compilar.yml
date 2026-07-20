@@ -1,0 +1,32 @@
+name: Compilar Executable
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Descargar codigo
+      uses: actions/checkout@v4
+
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Instalar PyInstaller
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+
+    - name: Compilar con PyInstaller
+      run: |
+        pyinstaller --onefile --uac-admin --embedded-manifest=y --icon=NONE "Xclient Crack Loader.py"
+
+    - name: Guardar el archivo EXE resultante
+      uses: actions/upload-artifact@v4
+      with:
+        name: Programa-Compilado
+        path: dist/*.exe
